@@ -16,9 +16,16 @@ const Categories = () => {
 
     const fetchCategories = async () => {
         try {
-            const {data} = await axios.get(`${env.apiUrl}/api/category`)
+            const {data} = await axios.get(`${env.apiUrl}/products`)
+            //const {data} = await axios.get(`${env.apiUrl}/api/category`)
             console.log({data})
             setCategories(data)
+
+            /* 
+            fetch('https://fakestoreapi.com/products/1')
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+            */
 
         } catch (error) {
             console.log({error})
