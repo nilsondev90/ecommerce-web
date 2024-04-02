@@ -3,7 +3,7 @@ import Header from "../components/header/header.component"
 
 const HomePage = () => {
     return (
-        <div>
+        <div style={{ height: '100%' }}>
             <Header />
             <Categories />
         </div>

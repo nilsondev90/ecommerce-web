@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
+// Components
+import CategoryItem from '../category-item/category-item.components'
+
 // Styles
 import './categories.styles.css'
 
@@ -16,9 +19,9 @@ const Categories = () => {
 
     const fetchCategories = async () => {
         try {
-            const {data} = await axios.get(`${env.apiUrl}/products`)
+            const { data } = await axios.get(`${env.apiUrl}/products`)
             //const {data} = await axios.get(`${env.apiUrl}/api/category`)
-            console.log({data})
+            console.log({ data })
             setCategories(data)
 
             /* 
@@ -28,7 +31,7 @@ const Categories = () => {
             */
 
         } catch (error) {
-            console.log({error})
+            console.log({ error })
         }
     }
 
@@ -39,7 +42,11 @@ const Categories = () => {
     return (
         <div className="categories-container">
             <div className="categories-content">
-                {/* {categories.map(category => <CategoryIntem />)} */}
+                {categories.map(category => (
+                    <div key={category.id}>
+                        <CategoryItem category={category} />
+                    </div>
+                ))}
             </div>
         </div>
     )

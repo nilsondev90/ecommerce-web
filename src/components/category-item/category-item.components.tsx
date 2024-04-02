@@ -13,7 +13,7 @@ interface CategoryItemProps {
 const CategoryItem: FunctionComponent<CategoryItemProps> = ({ category }) => {
     return (
         <div className="category-item-container"
-        style={{backgroundImage: category.image}}>
+            style={{ backgroundImage: `url(${category.image})`}}>
             <div className="category-name">
                 <p>{category.category}</p>
                 <p>Explorar</p>
