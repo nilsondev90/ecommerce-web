@@ -7,11 +7,20 @@ yarn add axios
 yarn add react-icons
     https://react-icons.github.io/react-icons/
 
+REACT_APP_API_URL=https://fakestoreapi.com
 
-REACT_APP_API_URL=https://club-ecommerce-api.herokuapp.com/
+yarn add styled-components
 
-REACT_APP_API_URL="https://sushil-ecommerce-admin.onrender.com/api/v1/"
+yarn add -D @types/styled-components
+    instalar o tipo que é necessário
 
-REACT_APP_API_URL=http://localhost:8000
+vscode-styled-components
+    extensão
+    
+styled-components-snippets
+    extensão
+    exsc - criar uma constante completa para preencher
 
-REACT_APP_API_URL=https://api.chec.io/v1
+Auto Close Tag
+    extensão
+    Auto preencher tag
