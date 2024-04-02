@@ -5,12 +5,11 @@ import axios from 'axios'
 import CategoryItem from '../category-item/category-item.components'
 
 // Styles
-import './categories.styles.css'
+import { CategoriesContainer, CategoriesContent } from './categories.styles'
 
 // Utilities
 import Category from '../../types/category.types'
 import env from '../../config/env.config'
-import { CategoriesContainer, CategoriesContent } from './categories.styles'
 
 const Categories = () => {
 
