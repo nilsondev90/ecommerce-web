@@ -8,6 +8,7 @@ import CustomButton from '../../components/custon-button/custon-button.component
 
 // Styles
 import { LoginContainer, LoginContent, LoginHeadLine, LoginInputContainer, LoginSubtitle } from "./login.styles"
+import CustomInput from '../../components/custon-input/custon-intput.component'
 
 const LoginPage = () => {
     return (
@@ -22,8 +23,14 @@ const LoginPage = () => {
 
                     <LoginSubtitle>ou entre com o seu e-mail</LoginSubtitle>
 
-                    <LoginInputContainer>{/* email input */}</LoginInputContainer>
-                    <LoginInputContainer>{/* password input */}</LoginInputContainer>
+                    <LoginInputContainer>
+                        <p>E-mail</p>
+                        <CustomInput placeholder='Digite seu Email'/>
+                    </LoginInputContainer>
+                    <LoginInputContainer>
+                        <p>Senha</p>
+                        <CustomInput placeholder='Digite sua Senha'/>
+                    </LoginInputContainer>
 
                     <CustomButton startIcon={<FiLogIn size={18}/>}>Entrar</CustomButton>
                 </LoginContent>
