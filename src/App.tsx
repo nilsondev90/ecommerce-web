@@ -1,25 +1,16 @@
-import React from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { FunctionComponent } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-function App (): JSX.Element { // Adicionando tipo de retorno JSX.Element
+// Page
+import HomePage from './pages/home.page'
+
+const App: FunctionComponent = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

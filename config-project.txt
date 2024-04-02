@@ -1,33 +1,13 @@
-npx create-react-app front-end --template typescript
 yarn create react-app front-end --template typescript
 
-yarn add -D eslint
+yarn add react-router-dom
 
-yarn eslint --init
-    To check syntax, find problems, and enforce code style
-    JavaScript modules (import/export)
-    React
-    TypeScript > Yes
-    Browser and Node (press space to select)
-    Use a popular style guide
-         Standard: https://github.com/standard/eslint-config-standard-with-typescript
-    JSON
-    Yes
-        yarn
+yarn add axios
 
-yarn add -D prettier-standard
-
-yarn add -D husky lint-staged
-
-yarn add -D prettier-config-standard
-    criar arquivo .prettierrc.json
-        "prettier-config-standard"
+yarn add react-icons
+    https://react-icons.github.io/react-icons/
 
 
+REACT_APP_API_URL=https://club-ecommerce-api.herokuapp.com/
 
-yarn eslint --ext --fix src/app.tsx
-
-
-
-yarn husky:prepare
-    executar este comando após todas as configurações
+REACT_APP_API_URL="https://sushil-ecommerce-admin.onrender.com/api/v1/"
