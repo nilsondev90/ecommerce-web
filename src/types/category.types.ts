@@ -13,8 +13,10 @@
 }
 */
 
+import Product from "./product.types"
 
-interface Category {
+
+/* interface Category {
     id: string,
     title: string,
     price: string,
@@ -27,13 +29,14 @@ interface Category {
     }
 }
 
-export default Category
-/* 
+export default Category */
+
 interface Category {
     id: string,
     name: string,
     displayName: string,
     imageUrl: string
+    products: Product[]
 }
 
-export default Category */
+export default Category
