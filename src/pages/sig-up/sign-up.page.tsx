@@ -45,7 +45,7 @@ const SignUpPage = () => {
 
             <SignUpContainer>
                 <SignUpContent>
-                    <SignUpHeadLine>Crie sua conta</SignUpHeadLine>
+                    <SignUpHeadLine>Crie sua conta grátis</SignUpHeadLine>
 
                     <SignUpInputContainer>
                         <p>Nome</p>
