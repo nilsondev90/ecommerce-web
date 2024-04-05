@@ -1,3 +1,8 @@
+// Firebase
+import { AuthError, AuthErrorCodes, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import { auth, db, googleProvider } from '../../config/firebase.config'
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
+
 // Icones
 import { BsGoogle } from 'react-icons/bs'
 import { FiLogIn } from 'react-icons/fi'
@@ -12,8 +17,7 @@ import InputErrorMessage from '../../components/input-error-message/input-error-
 // Styles
 import { LoginContainer, LoginContent, LoginHeadLine, LoginInputContainer, LoginSubtitle } from "./login.styles"
 import CustomInput from '../../components/custon-input/custon-intput.component'
-import { AuthError, AuthErrorCodes, signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../config/firebase.config'
+
 
 interface LoginForm {
     email: string
@@ -61,6 +65,38 @@ const LoginPage = () => {
 
     //console.log(errors)
 
+    const handleSignInWithGooglePress = async () => {
+        try {
+            const userCredentials = await signInWithPopup(auth, googleProvider)
+            console.log({ userCredentials })
+
+            const querySnapshot = await getDocs(
+                query(
+                    collection(db, 'users'),
+                    where('id', '==', userCredentials.user.uid)
+                )
+            )
+
+            const user = querySnapshot.docs[0]?.data()
+
+            if (!user) {
+                const firstName = userCredentials.user.displayName?.split(' ')[0] // Primeiro Nome
+                const lastName = userCredentials.user.displayName?.split(' ')[1] // Sobrenome
+
+                await addDoc(collection(db, 'users'), {
+                    id: userCredentials.user.uid,
+                    email: userCredentials.user.email,
+                    firstName,
+                    lastName,
+                    provider: 'google'
+                })
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <>
             <Header />
@@ -69,7 +105,7 @@ const LoginPage = () => {
                 <LoginContent>
                     <LoginHeadLine>Entre com sua conta</LoginHeadLine>
 
-                    <CustomButton startIcon={<BsGoogle size={18} />}>Entrar com o Google</CustomButton>
+                    <CustomButton startIcon={<BsGoogle size={18} />} onClick={handleSignInWithGooglePress}>Entrar com o Google</CustomButton>
 
                     <LoginSubtitle>ou entre com o seu e-mail</LoginSubtitle>
 
