@@ -10,6 +10,10 @@ import { FiLogIn } from 'react-icons/fi'
 import { useForm } from 'react-hook-form'
 import validator, { isEmail } from 'validator'
 
+// React
+import { useEffect, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 // Components
 import CustomButton from "../../components/custon-button/custon-button.component"
 import CustomInput from "../../components/custon-input/custon-intput.component"
@@ -18,6 +22,7 @@ import InputErrorMessage from '../../components/input-error-message/input-error-
 
 // Styles
 import { SignUpContainer, SignUpContent, SignUpHeadLine, SignUpInputContainer } from "./sign-up.styles"
+import { UserContext } from '../../contexts/user.contexts'
 
 interface SignUpForm {
     firstName: string,
@@ -36,6 +41,17 @@ const SignUpPage = () => {
         setError,
         handleSubmit
     } = useForm<SignUpForm>()
+
+    // Se o usuário está autenticado ou não
+    const { isAuthenticated } = useContext(UserContext)
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/') // Redirecionar para Home
+        }
+    }, [isAuthenticated])
 
     const handleSubmitPress = async (data: SignUpForm) => {
 

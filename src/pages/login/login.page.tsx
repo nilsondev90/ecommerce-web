@@ -3,6 +3,10 @@ import { AuthError, AuthErrorCodes, GoogleAuthProvider, signInWithEmailAndPasswo
 import { auth, db, googleProvider } from '../../config/firebase.config'
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
 
+// React
+import { useEffect, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 // Icones
 import { BsGoogle } from 'react-icons/bs'
 import { FiLogIn } from 'react-icons/fi'
@@ -17,6 +21,7 @@ import InputErrorMessage from '../../components/input-error-message/input-error-
 // Styles
 import { LoginContainer, LoginContent, LoginHeadLine, LoginInputContainer, LoginSubtitle } from "./login.styles"
 import CustomInput from '../../components/custon-input/custon-intput.component'
+import { UserContext } from '../../contexts/user.contexts'
 
 
 interface LoginForm {
@@ -32,6 +37,17 @@ const LoginPage = () => {
         setError,
         handleSubmit
     } = useForm<LoginForm>()
+
+    // Se o usuário está autenticado ou não
+    const { isAuthenticated } = useContext(UserContext)
+
+    const navigate = useNavigate()
+
+    useEffect(() =>{
+        if (isAuthenticated) {
+            navigate('/') // Redirecionar para Home
+        }
+    }, [isAuthenticated])
 
     const handleSubmitPress = async (data: LoginForm) => {
         //console.log(data)
