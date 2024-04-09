@@ -1,4 +1,4 @@
-import { FunctionComponent, useContext } from 'react'
+import { FunctionComponent, useContext, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // Page
@@ -14,6 +14,8 @@ import { collection, getDocs, query, where } from 'firebase/firestore'
 
 const App: FunctionComponent = () => {
 
+  const [isInitializing, setInitializing] = useState(true)
+
   const { isAuthenticated, loginUser, logoutUser } = useContext(UserContext)
 
   // Monitorar se o usuário está logado ou não.
@@ -23,7 +25,8 @@ const App: FunctionComponent = () => {
     // Se o usuário estiver autenticado e não houver usuário
     const isSigningOut = isAuthenticated && !user
     if (isSigningOut) {
-      return logoutUser()
+      logoutUser()
+      return setInitializing(false)
     }
 
     // Se o usuário for nulo no context e não nulo no firebase
@@ -37,9 +40,14 @@ const App: FunctionComponent = () => {
 
       const userFromFirestore = querySnapshort.docs[0]?.data()
 
-      return loginUser(userFromFirestore as any)
+      loginUser(userFromFirestore as any)
+      return setInitializing(false)
     }
+
+    return setInitializing(false)
   })
+
+  if (isInitializing) return null
 
   console.log(isAuthenticated)
 
